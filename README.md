@@ -1,2 +1,0 @@
-# yawa
-Created with CodeSandbox
