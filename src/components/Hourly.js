@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Hourly = props => {
   const hourData = props.hourly.map(hour => {
     return <li>{hour.hour}</li>;
   });
-  return props.visible ? (
+  return (
     <div>
       <ul>{hourData}</ul>
     </div>
-  ) : null;
+  );
 };
 
 export default Hourly;

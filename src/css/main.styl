@@ -1,0 +1,48 @@
+.App 
+  font-family: sans-serif;
+  text-align: center;
+
+
+.weatherCardList 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px,0.25fr));
+  justify-content: center;
+  grid-gap: 10px;
+  max-width: 960px;
+  margin: 20px 20px 30px 20px
+
+
+.weatherCard 
+  display: grid;
+  border: 1px solid darkslategrey;
+  grid-template-columns: 50px 50px;
+  grid-template-rows: 50px auto 50px;
+  &:hover
+    background-color: lightgray;
+
+  
+.weatherCard > i 
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+
+
+.weatherCardDate 
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+
+.weatherCard > div 
+  padding: 10px;
+
+
+.hi 
+  color: blue;
+
+
+.hourList {
+  display: grid;
+  grid-template-columns: 50px 50px;
+  grid-template-rows: auto;
+  grid-row-gap: 5px;
+}
