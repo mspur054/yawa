@@ -11,6 +11,8 @@ import WeatherIcon from "./Weather/WeatherIcon";
 import Typography from "@material-ui/core/Typography";
 import WeatherDate from "./Weather/WeatherDate";
 
+import { convertToF } from "../helpers";
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -39,10 +41,6 @@ function Hourly(props) {
       }`;
     }
 
-    function convertToF(temp) {
-      return temp * (9 / 5) + 32;
-    }
-
     return hourly.data
       .map(hour => {
         return (
@@ -64,7 +62,7 @@ function Hourly(props) {
           </React.Fragment>
         );
       })
-      .slice(27); //only 28 hours ahead
+      .slice(23); //only 24 hours ahead
   }
 
   return <List className={classes.root}>{renderHourly(props)}</List>;

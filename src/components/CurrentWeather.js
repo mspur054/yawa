@@ -123,7 +123,7 @@ const CurrentWeather = props => {
           >
             {renderBtn()}
           </Button>
-          <DailyChart hourly={data.hourly.data} />
+          <DailyChart siUnits={siUnits} hourly={data.hourly.data} />
         </Grid>
         <Grid align="center" item sm={12} xs={12}>
           <CollapseWeather>
