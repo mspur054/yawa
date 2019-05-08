@@ -5,9 +5,16 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "autoprefixer-stylus": "^0.14.0",
+    "axios": "^0.18.0",
+    "chartist": "^0.11.0",
+    "date-fns": "^2.0.0-alpha.27",
     "react": "16.8.3",
+    "react-chartist": "^0.13.3",
     "react-dom": "16.8.3",
+    "react-helmet": "^5.2.1",
     "react-router-dom": "4.3.1",
     "react-scripts": "^2.1.8",
     "stylus": "^0.54.5"
