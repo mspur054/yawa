@@ -5,3 +5,7 @@ export function convertToF(temp) {
 export function formatAddress(address) {
   return `${address.city}, ${address.state}`.toUpperCase();
 }
+
+export function convertToMph(wind) {
+  return wind * 0.621371;
+}
