@@ -62,7 +62,7 @@ function Hourly(props) {
           </React.Fragment>
         );
       })
-      .slice(23); //only 24 hours ahead
+      .slice(0, 23); //only 24 hours ahead
   }
 
   return <List className={classes.root}>{renderHourly(props)}</List>;

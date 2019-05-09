@@ -47,12 +47,12 @@ export const useGeolocation = () => {
   return state;
 };
 
-export const useWeather = () => {
+export const useLocation = location => {
   const [data, setData] = useState({ currently: {}, hourly: {} });
-  const location = useGeolocation();
-
+  console.log(location);
+  //TODO:Figure out why so many calls
   useEffect(() => {
-    const fetchData = async location => {
+    const fetchData = async () => {
       const result = await openStreetMap.get(
         `/reverse?format=jsonv2&lat=${location.latitude}&lon=${
           location.longitude
@@ -63,8 +63,7 @@ export const useWeather = () => {
     };
 
     fetchData();
-  }, []);
+  }, [location.latitude]);
 
-  console.log("weather", data);
   return data;
 };

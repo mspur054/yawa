@@ -10,8 +10,9 @@ import CollapseWeather from "./CollapseWeather";
 import Hourly from "./Hourly";
 import WeatherIcon from "./Weather/WeatherIcon";
 import WeatherDate from "./Weather/WeatherDate";
-import { useGeolocation } from "./Utils/react-utils";
+import { useGeolocation, useLocation } from "./Utils/react-utils";
 import DailyChart from "./graph/DailyChart";
+import { convertToF, formatAddress } from "../helpers";
 
 const styles = theme => ({
   root: {
@@ -40,16 +41,10 @@ const CurrentWeather = props => {
   const [data, setData] = useState({ currently: {}, hourly: {} });
   const [siUnits, setUnits] = useState("si");
 
-  // async function getCurrentWeather() {
-  //   const res = await darkSky.get(
-  //     `/45.4255,-75.6924?exclude=minutely,flags,daily&units=${siUnits}`
-  //   );
-  //   setData(res.data);
-  // }
+  const position = useGeolocation();
+  const { address } = useLocation(position);
 
-  // useEffect(() => {
-  //   getCurrentWeather();
-  // }, []);
+  console.log(address, address ? formatAddress(address) : null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,10 +66,6 @@ const CurrentWeather = props => {
     }
   }
 
-  function convertToF(temp) {
-    return temp * (9 / 5) + 32;
-  }
-
   function renderTemp() {
     if (!data.currently) {
       return;
@@ -91,7 +82,7 @@ const CurrentWeather = props => {
       <Grid container spacing={16}>
         <Grid align="left" item xs={12} sm={12}>
           <Typography variant="h6" align="left" gutterBottom>
-            OTTAWA, ON
+            {address ? formatAddress(address) : null}
           </Typography>
           <WeatherDate
             time={data.currently.time}
@@ -101,15 +92,15 @@ const CurrentWeather = props => {
         </Grid>
         <Grid item xs={9} sm container>
           <WeatherIcon icon={data.currently.icon} />
-
           <Typography variant="h5">{renderTemp()}</Typography>
         </Grid>
         <Grid align="left" item xs={3}>
           <Typography>
-            {`Precipitation: ${data.currently.precipProbability}%`}{" "}
+            {`Precipitation: ${data.currently.precipProbability}%`}
           </Typography>
-          <Typography>{`Humidity: ${data.currently.humidity *
-            100}%`}</Typography>
+          <Typography>{`Humidity: ${Math.round(
+            data.currently.humidity * 100
+          )}%`}</Typography>
           <Typography>{`Wind: ${(data.currently.windSpeed * 3.6).toFixed(
             1
           )} km/h`}</Typography>

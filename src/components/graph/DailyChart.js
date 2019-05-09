@@ -10,19 +10,17 @@ const DailyChart = ({ hourly, siUnits }) => {
   const labels = hourly
     ? Object.keys(hourly)
         .map(key => format(fromUnixTime(hourly[key].time), "ha"))
-        .slice(23)
+        .slice(0, 23)
     : null;
 
   const series = hourly
     ? Object.keys(hourly)
         .map(function(key) {
-          return Math.floor(
-            siUnits === "si"
-              ? hourly[key].apparentTemperature
-              : convertToF(hourly[key].apparentTemperature)
-          );
+          return siUnits === "si"
+            ? hourly[key].apparentTemperature
+            : convertToF(hourly[key].apparentTemperature);
         })
-        .slice(23)
+        .slice(0, 23)
     : null;
 
   const data = {
@@ -31,6 +29,9 @@ const DailyChart = ({ hourly, siUnits }) => {
   };
 
   const options = {
+    width: "100%",
+    showPoint: false,
+    fullWidth: true,
     axisX: {
       labelInterpolationFnc: function(value, index) {
         return index % 6 === 0 ? value : null;
@@ -42,9 +43,11 @@ const DailyChart = ({ hourly, siUnits }) => {
     [
       "screen and (min-width: 640px)",
       {
+        showArea: true,
         axisX: {
+          showGrid: false,
           labelInterpolationFnc: function(value, index) {
-            return index % 3 === 0 ? value : null;
+            return index % 4 === 0 ? value : null;
           }
         }
       }
@@ -66,7 +69,7 @@ const DailyChart = ({ hourly, siUnits }) => {
 };
 
 DailyChart.propTypes = {
-  hourly: PropTypes.object
+  hourly: PropTypes.array
 };
 
 export default DailyChart;
