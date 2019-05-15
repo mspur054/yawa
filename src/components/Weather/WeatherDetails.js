@@ -14,6 +14,7 @@ const WeatherDetails = ({ data, siUnits }) => {
 
   return (
     <React.Fragment>
+      <Typography>DETAILS</Typography>
       <Typography>{`Precipitation: ${precipProbability}%`}</Typography>
       <Typography>{`Humidity: ${Math.round(humidity * 100)}%`}</Typography>
       <Typography>{`Wind: ${renderWind()}`}</Typography>

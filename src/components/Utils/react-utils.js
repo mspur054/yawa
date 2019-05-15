@@ -49,7 +49,6 @@ export const useGeolocation = () => {
 
 export const useLocation = location => {
   const [data, setData] = useState({ currently: {}, hourly: {} });
-  console.log(location);
   //TODO:Figure out why so many calls
   useEffect(() => {
     const fetchData = async () => {

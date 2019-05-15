@@ -46,8 +46,6 @@ const CurrentWeather = props => {
   const position = useGeolocation();
   const { address } = useLocation(position);
 
-  console.log(address, address ? formatAddress(address) : null);
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);

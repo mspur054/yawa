@@ -21,8 +21,7 @@ TabContainer.propTypes = {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
+    flexGrow: 1
   }
 });
 
@@ -41,25 +40,23 @@ class NavBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs centered value={value} onChange={this.handleChange}>
-            <Tab component={RouterLink} value="/" to="/" label="Today" />
-            <Tab
-              component={RouterLink}
-              value="/tomorrow"
-              to="/tomorrow"
-              label="Tomorrow"
-            />
-            <Tab
-              component={RouterLink}
-              value="/week"
-              to="/week"
-              label="This Week"
-            />
-          </Tabs>
-        </AppBar>
-
-        {value === "/week" && <TabContainer>Item Three</TabContainer>}
+        {/* <AppBar position="static"> */}
+        <Tabs centered value={value} onChange={this.handleChange}>
+          <Tab component={RouterLink} value="/" to="/" label="Today" />
+          <Tab
+            component={RouterLink}
+            value="/tomorrow"
+            to="/tomorrow"
+            label="Tomorrow"
+          />
+          <Tab
+            component={RouterLink}
+            value="/week"
+            to="/week"
+            label="This Week"
+          />
+        </Tabs>
+        {/* </AppBar> */}
       </div>
     );
   }
