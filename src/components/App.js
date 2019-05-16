@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-import NavBar from "./NavBar";
-import Sidebar from "./Sidebar";
 import Tomorrow from "./Tomorrow";
 import AppFrame from "./AppFrame";
 

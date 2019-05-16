@@ -52,7 +52,7 @@ export const useLocation = location => {
   //TODO:Figure out why so many calls
   useEffect(() => {
     const fetchData = async () => {
-      if (location.latitude) {
+      if (!location.loading) {
         const result = await openStreetMap.get(
           `/reverse?format=jsonv2&lat=${location.latitude}&lon=${
             location.longitude
@@ -64,7 +64,7 @@ export const useLocation = location => {
     };
 
     fetchData();
-  }, [location.latitude]);
+  }, [location.loading]);
 
   return data;
 };

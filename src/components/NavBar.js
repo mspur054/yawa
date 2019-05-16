@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -40,7 +39,6 @@ class NavBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <AppBar position="static"> */}
         <Tabs centered value={value} onChange={this.handleChange}>
           <Tab component={RouterLink} value="/" to="/" label="Today" />
           <Tab
@@ -56,7 +54,6 @@ class NavBar extends React.Component {
             label="This Week"
           />
         </Tabs>
-        {/* </AppBar> */}
       </div>
     );
   }

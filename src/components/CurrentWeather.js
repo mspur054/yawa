@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import darkSky from "../api/darkSky";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -14,6 +13,7 @@ import WeatherDetails from "./Weather/WeatherDetails";
 import { useGeolocation, useLocation } from "./Utils/react-utils";
 import DailyChart from "./graph/DailyChart";
 import { convertToF, formatAddress } from "../helpers";
+import { useDataApi } from "../contexts/WeatherContext";
 
 const styles = theme => ({
   root: {
@@ -38,32 +38,19 @@ const styles = theme => ({
 
 const CurrentWeather = props => {
   const { classes } = props;
-
-  const [data, setData] = useState({ currently: {}, hourly: {} });
   const [siUnits, setUnits] = useState("si");
-  const [isLoading, setIsLoading] = useState(false);
 
   const position = useGeolocation();
   const { address } = useLocation(position);
   console.log(position);
 
+  const data = useDataApi(position);
+
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      if (position.latitude) {
-        const result = await darkSky.get(
-          `/${position.latitude},${
-            position.longitude
-          }?exclude=minutely,flags,daily&units=si`
-        );
-
-        setData(result.data);
-      }
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, [position]);
+    if (!position.loading) {
+      data.doFetch(position);
+    }
+  }, [position.loading]);
 
   function renderBtn() {
     if (siUnits === "si") {
@@ -83,7 +70,7 @@ const CurrentWeather = props => {
 
   return (
     <WeatherContent>
-      {isLoading ? (
+      {data.isLoading ? (
         <div>Loading...</div>
       ) : (
         <Grid container spacing={16}>

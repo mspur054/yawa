@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Chartist from "chartist";
+//import Chartist from "chartist";
 import ChartistGraph from "react-chartist";
 import { fromUnixTime, format } from "date-fns";
 
