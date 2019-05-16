@@ -45,20 +45,25 @@ const CurrentWeather = props => {
 
   const position = useGeolocation();
   const { address } = useLocation(position);
+  console.log(position);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const result = await darkSky.get(
-        `/45.4255,-75.6924?exclude=minutely,flags,daily&units=si`
-      );
+      if (position.latitude) {
+        const result = await darkSky.get(
+          `/${position.latitude},${
+            position.longitude
+          }?exclude=minutely,flags,daily&units=si`
+        );
 
-      setData(result.data);
+        setData(result.data);
+      }
       setIsLoading(false);
     };
 
     fetchData();
-  }, []);
+  }, [position]);
 
   function renderBtn() {
     if (siUnits === "si") {

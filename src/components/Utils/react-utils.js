@@ -52,13 +52,15 @@ export const useLocation = location => {
   //TODO:Figure out why so many calls
   useEffect(() => {
     const fetchData = async () => {
-      const result = await openStreetMap.get(
-        `/reverse?format=jsonv2&lat=${location.latitude}&lon=${
-          location.longitude
-        }`
-      );
+      if (location.latitude) {
+        const result = await openStreetMap.get(
+          `/reverse?format=jsonv2&lat=${location.latitude}&lon=${
+            location.longitude
+          }`
+        );
 
-      setData(result.data);
+        setData(result.data);
+      }
     };
 
     fetchData();
