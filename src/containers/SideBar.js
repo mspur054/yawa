@@ -17,7 +17,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
-import NavBar from "../NavBar";
+import NavBar from "../components/NavBar";
 
 const drawerWidth = 240;
 
@@ -53,7 +53,7 @@ const styles = theme => ({
   }
 });
 
-const ResponsiveDrawer = props => {
+const SideBar = props => {
   const { classes, theme } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -80,7 +80,6 @@ const ResponsiveDrawer = props => {
   );
 
   return (
-    // <div className={classes.root}>
     <>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
@@ -132,10 +131,10 @@ const ResponsiveDrawer = props => {
   );
 };
 
-ResponsiveDrawer.propTypes = {
+SideBar.propTypes = {
   classes: PropTypes.object.isRequired
   // Injected by the documentation to work in an iframe.
   // You won't need it on your project.
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(SideBar);

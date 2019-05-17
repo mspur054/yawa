@@ -13,7 +13,7 @@ import WeatherDetails from "./Weather/WeatherDetails";
 import { useGeolocation, useLocation } from "./Utils/react-utils";
 import DailyChart from "./graph/DailyChart";
 import { convertToF, formatAddress } from "../helpers";
-import { useDataApi } from "../contexts/WeatherContext";
+import { useDataApi } from "../components/Utils/useDataApi";
 
 const styles = theme => ({
   root: {

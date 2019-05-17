@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-import Tomorrow from "./Tomorrow";
+import Tomorrow from "../components/Tomorrow";
 import AppFrame from "./AppFrame";
 
-import CurrentWeather from "./CurrentWeather";
+import CurrentWeather from "../components/CurrentWeather";
 
 const App = props => {
   return (
