@@ -5,15 +5,17 @@ import Tomorrow from "../components/Tomorrow";
 import AppFrame from "./AppFrame";
 import CurrentWeather from "../components/CurrentWeather";
 import { useDataApi } from "../components/Utils/useDataApi";
-import { useGeolocation } from "../components/Utils/react-utils";
+import { useGeolocation, useLocation } from "../components/Utils/react-utils";
 
 const App = props => {
   const position = useGeolocation();
   const weatherData = useDataApi(position);
+  const locationData = useLocation(position);
 
   useEffect(() => {
     if (!position.loading) {
       weatherData.doFetch(position);
+      locationData.doFetch(position);
     }
   }, [position.loading]);
 

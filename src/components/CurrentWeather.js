@@ -10,7 +10,6 @@ import Hourly from "./Hourly";
 import WeatherIcon from "./Weather/WeatherIcon";
 import WeatherDate from "./Weather/WeatherDate";
 import WeatherDetails from "./Weather/WeatherDetails";
-import { useGeolocation, useLocation } from "./Utils/react-utils";
 import DailyChart from "./graph/DailyChart";
 import { convertToF, formatAddress } from "../helpers";
 import { useStateValue } from "../contexts/StateProvider";
@@ -38,12 +37,10 @@ const styles = theme => ({
 
 const CurrentWeather = props => {
   const { classes } = props;
-  //TODO: fetch address in initial fetch
-  const position = useGeolocation();
-  const { address } = useLocation(position);
 
-  const [{ data, settings }, dispatch] = useStateValue();
+  const [{ data, settings, location }, dispatch] = useStateValue();
 
+  //TODO: change the way this works
   function renderBtn() {
     if (settings.units === "METRIC") {
       return "Farenheit";
@@ -68,7 +65,7 @@ const CurrentWeather = props => {
         <Grid container spacing={16}>
           <Grid align="left" item xs={12} sm={12}>
             <Typography variant="h6" align="left" gutterBottom>
-              {address ? formatAddress(address) : null}
+              {!location.isLoading ? formatAddress(location.address) : null}
             </Typography>
             <WeatherDate
               time={data.currently.time}

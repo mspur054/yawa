@@ -18,6 +18,19 @@ const initialState = {
     currently: {},
     hourly: {},
     daily: {}
+  },
+  location: {
+    isLoading: true,
+    isError: false,
+    address: {},
+    addresstype: null,
+    boundingbox: [],
+    category: null,
+    display_name: null,
+    importance: null,
+    lat: null,
+    lon: null,
+    type: null
   }
 };
 

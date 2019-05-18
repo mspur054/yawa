@@ -27,7 +27,7 @@ const styles = theme => ({
 function Hourly(props) {
   const { classes, units } = props;
 
-  function renderHourly({ hourly, units }) {
+  function renderHourly({ hourly }) {
     if (!hourly.data) {
       return;
     }

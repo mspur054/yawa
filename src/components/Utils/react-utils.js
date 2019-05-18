@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useStateValue } from "../../contexts/StateProvider";
 import openStreetMap from "../../api/openStreetMap";
 
 export const useGeolocation = () => {
@@ -47,24 +48,33 @@ export const useGeolocation = () => {
   return state;
 };
 
-export const useLocation = location => {
-  const [data, setData] = useState({ currently: {}, hourly: {} });
+export const useLocation = initialPosition => {
+  const [position, setPosition] = useState(initialPosition);
+  const [{ location }, dispatch] = useStateValue(); // useState({ currently: {}, hourly: {} });
   //TODO:Figure out why so many calls
+  console.log(position);
   useEffect(() => {
     const fetchData = async () => {
-      if (!location.loading) {
-        const result = await openStreetMap.get(
-          `/reverse?format=jsonv2&lat=${location.latitude}&lon=${
-            location.longitude
-          }`
-        );
-
-        setData(result.data);
+      if (!position.loading) {
+        dispatch({ type: "FETCH_LOCATION_INIT" });
+        try {
+          const result = await openStreetMap.get(
+            `/reverse?format=jsonv2&lat=${position.latitude}&lon=${
+              position.longitude
+            }`
+          );
+          dispatch({ type: "FETCH_LOCATION_SUCCESS", payload: result.data });
+        } catch (error) {
+          dispatch({ type: "FETCH_LOCATION_FAILURE" });
+        }
       }
     };
 
     fetchData();
-  }, [location.loading]);
+  }, [position.loading]);
 
-  return data;
+  const doFetch = position => {
+    setPosition(position);
+  };
+  return { ...location, doFetch };
 };
