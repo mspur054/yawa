@@ -9,8 +9,8 @@ import reducer from "./reducers/mainReducer";
 
 const initialState = {
   settings: {
-    gender: true,
-    units: "CA"
+    gender: "MALE",
+    units: "METRIC"
   },
   data: {
     isLoading: true,

@@ -25,19 +25,19 @@ const styles = theme => ({
 });
 
 function Hourly(props) {
-  const { classes, siUnits } = props;
+  const { classes, units } = props;
 
-  function renderHourly({ hourly, siUnits }) {
+  function renderHourly({ hourly, units }) {
     if (!hourly.data) {
       return;
     }
-
+    //TODO: BAD DESIGN, FIX THIS
     function renderTemp(temp) {
       if (!temp) {
         return;
       }
-      return `${Math.floor(siUnits === "si" ? temp : convertToF(temp))}°${
-        siUnits === "si" ? "C" : "F"
+      return `${Math.floor(units === "METRIC" ? temp : convertToF(temp))}°${
+        units === "METRIC" ? "C" : "F"
       }`;
     }
 

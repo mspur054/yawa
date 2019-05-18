@@ -6,7 +6,7 @@ import { fromUnixTime, format } from "date-fns";
 
 import { convertToF } from "../../helpers";
 
-const DailyChart = ({ hourly, siUnits }) => {
+const DailyChart = ({ hourly, units }) => {
   const labels = hourly
     ? Object.keys(hourly)
         .map(key => format(fromUnixTime(hourly[key].time), "ha"))
@@ -16,7 +16,7 @@ const DailyChart = ({ hourly, siUnits }) => {
   const series = hourly
     ? Object.keys(hourly)
         .map(function(key) {
-          return siUnits === "si"
+          return units === "METRIC"
             ? hourly[key].apparentTemperature
             : convertToF(hourly[key].apparentTemperature);
         })

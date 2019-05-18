@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -13,7 +13,7 @@ import WeatherDetails from "./Weather/WeatherDetails";
 import { useGeolocation, useLocation } from "./Utils/react-utils";
 import DailyChart from "./graph/DailyChart";
 import { convertToF, formatAddress } from "../helpers";
-import { useDataApi } from "../components/Utils/useDataApi";
+import { useStateValue } from "../contexts/StateProvider";
 
 const styles = theme => ({
   root: {
@@ -38,34 +38,26 @@ const styles = theme => ({
 
 const CurrentWeather = props => {
   const { classes } = props;
-  const [siUnits, setUnits] = useState("si");
-
+  //TODO: fetch address in initial fetch
   const position = useGeolocation();
   const { address } = useLocation(position);
-  console.log(position);
 
-  const data = useDataApi(position);
-
-  useEffect(() => {
-    if (!position.loading) {
-      data.doFetch(position);
-    }
-  }, [position.loading]);
+  const [{ data, settings }, dispatch] = useStateValue();
 
   function renderBtn() {
-    if (siUnits === "si") {
+    if (settings.units === "METRIC") {
       return "Farenheit";
     } else {
-      return "si";
+      return "METRIC";
     }
   }
 
   function renderTemp() {
     return `Feels like ${Math.floor(
-      siUnits === "si"
+      settings.units === "METRIC"
         ? data.currently.apparentTemperature
         : convertToF(data.currently.apparentTemperature)
-    )}°${siUnits === "si" ? "C" : "F"}`;
+    )}°${settings.units === "METRIC" ? "C" : "F"}`;
   }
 
   return (
@@ -89,22 +81,26 @@ const CurrentWeather = props => {
             <Typography variant="h5">{renderTemp()}</Typography>
           </Grid>
           <Grid align="left" item xs={3}>
-            <WeatherDetails data={data} siUnits={siUnits} />
+            <WeatherDetails data={data} units={settings.units} />
           </Grid>
           <Grid item sm={12} xs={12}>
             <Button
               variant="contained"
               color="primary"
               className={classes.margin}
-              onClick={() => setUnits(renderBtn())}
+              onClick={() =>
+                settings.units === "METRIC"
+                  ? dispatch({ type: "SET_UNITS_IMPERIAL" })
+                  : dispatch({ type: "SET_UNITS_METRIC" })
+              }
             >
               {renderBtn()}
             </Button>
-            <DailyChart siUnits={siUnits} hourly={data.hourly.data} />
+            <DailyChart units={settings.units} hourly={data.hourly.data} />
           </Grid>
           <Grid align="center" item sm={12} xs={12}>
             <CollapseWeather>
-              <Hourly siUnits={siUnits} hourly={data.hourly} />
+              <Hourly units={settings.units} hourly={data.hourly} />
             </CollapseWeather>
           </Grid>
         </Grid>

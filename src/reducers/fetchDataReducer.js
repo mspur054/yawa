@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case "FETCH_FAILURE":
       return { ...state, isLoading: false, isError: true };
     default:
-      throw new Error();
+      return state;
   }
 };
 

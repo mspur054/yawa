@@ -1,13 +1,13 @@
-import { useState, useReducer, useEffect } from "react";
+import { useState, useEffect } from "react";
 import darkSky from "../../api/darkSky";
-import fetchDataReducer from "../../reducers/fetchDataReducer";
+import { useStateValue } from "../../contexts/StateProvider";
 /**
  * Fetches data from dark sky if the position has been loaded.
  *
  */
 export const useDataApi = initialPosition => {
   const [position, setPosition] = useState(initialPosition);
-  const [state, dispatch] = useReducer(fetchDataReducer, initialState);
+  const [{ data }, dispatch] = useStateValue();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,13 +33,5 @@ export const useDataApi = initialPosition => {
     setPosition(position);
   };
 
-  return { ...state, doFetch };
-};
-
-const initialState = {
-  isLoading: true,
-  isError: false,
-  currently: {},
-  hourly: {},
-  daily: {}
+  return { ...data, doFetch };
 };

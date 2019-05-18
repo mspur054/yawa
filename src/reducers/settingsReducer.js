@@ -1,9 +1,13 @@
 const reducer = (state, action) => {
   switch (action.type) {
-    case "CHANGE_GENDER":
-      return { ...state, gender: !state.gender };
-    case "CHANGE_UNITS":
-      return { ...state, units: action.units };
+    case "SET_GENDER_MALE":
+      return { ...state, gender: "MALE" };
+    case "SET_GENDER_FEMALE":
+      return { ...state, gender: "FEMALE" };
+    case "SET_UNITS_METRIC":
+      return { ...state, units: "METRIC" };
+    case "SET_UNITS_IMPERIAL":
+      return { ...state, units: "IMPERIAL" };
     default:
       return state;
   }

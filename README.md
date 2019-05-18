@@ -9,4 +9,4 @@ Features
 - [x] Implement Canadian and American units
 - [ ] Clothing Icons change depending on gender
 - [ ] Graphs for wind, temp feel, dew point.
-- [ ] Warnings when dew point/temp too high for tough workouts/races (You only need to have exhaustion once)
+- [ ] Warnings when dew point/temp too high for tough workouts/races (You only need to have heat exhaustion once)
