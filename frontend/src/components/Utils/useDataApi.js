@@ -11,22 +11,22 @@ export const useDataApi = initialPosition => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!position.loading) {
-        //only try fetch if position is not loading
-        dispatch({ type: "FETCH_INIT" });
-        try {
-          const result = await darkSky.get(
-            `/${position.latitude},${
-              position.longitude
-            }?exclude=minutely,flags,daily&units=si`
-          );
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-        } catch (error) {
-          dispatch({ type: "FETCH_FAILURE" });
-        }
+      //only try fetch if position is not loading
+      dispatch({ type: "FETCH_INIT" });
+      try {
+        const result = await darkSky.get(
+          `/${position.latitude},${
+            position.longitude
+          }?exclude=minutely,flags,daily&units=si`
+        );
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+      } catch (error) {
+        dispatch({ type: "FETCH_FAILURE" });
       }
     };
-    fetchData();
+    if (!position.loading) {
+      fetchData();
+    }
   }, [position]);
 
   const doFetch = position => {

@@ -55,22 +55,21 @@ export const useLocation = initialPosition => {
   console.log(position);
   useEffect(() => {
     const fetchData = async () => {
-      if (!position.loading) {
-        dispatch({ type: "FETCH_LOCATION_INIT" });
-        try {
-          const result = await openStreetMap.get(
-            `/reverse?format=jsonv2&lat=${position.latitude}&lon=${
-              position.longitude
-            }`
-          );
-          dispatch({ type: "FETCH_LOCATION_SUCCESS", payload: result.data });
-        } catch (error) {
-          dispatch({ type: "FETCH_LOCATION_FAILURE" });
-        }
+      dispatch({ type: "FETCH_LOCATION_INIT" });
+      try {
+        const result = await openStreetMap.get(
+          `/reverse?format=jsonv2&lat=${position.latitude}&lon=${
+            position.longitude
+          }`
+        );
+        dispatch({ type: "FETCH_LOCATION_SUCCESS", payload: result.data });
+      } catch (error) {
+        dispatch({ type: "FETCH_LOCATION_FAILURE" });
       }
     };
-
-    fetchData();
+    if (!position.loading) {
+      fetchData();
+    }
   }, [position.loading]);
 
   const doFetch = position => {
