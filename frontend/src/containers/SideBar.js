@@ -18,6 +18,8 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
 import NavBar from "../components/NavBar";
+import SettingsDrawer from "./SettingsDrawer";
+import { useStateValue } from "../contexts/StateProvider";
 
 const drawerWidth = 240;
 
@@ -56,6 +58,7 @@ const styles = theme => ({
 const SideBar = props => {
   const { classes, theme } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [{ settings }, dispatch] = useStateValue();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -76,6 +79,7 @@ const SideBar = props => {
         ))}
       </List>
       <Divider />
+      {/* <Settings settings={settings} /> */}
     </div>
   );
 
@@ -111,7 +115,8 @@ const SideBar = props => {
               paper: classes.drawerPaper
             }}
           >
-            {drawer}
+            {/* {drawer} */}
+            <SettingsDrawer settings={settings} />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -122,7 +127,8 @@ const SideBar = props => {
             variant="permanent"
             open
           >
-            {drawer}
+            {/* {drawer} */}
+            <SettingsDrawer settings={settings} />
           </Drawer>
         </Hidden>
       </nav>

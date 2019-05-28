@@ -1,4 +1,5 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 const ClothingDetails = ({ apparentTemperature }) => {
   const clothingRecc = apparentTemperature => {
@@ -29,9 +30,9 @@ const ClothingDetails = ({ apparentTemperature }) => {
 
   return (
     <div>
-      <h5>Recommended Clothing</h5>
+      <Typography variant="h5">Recommended Clothing</Typography>
       {clothingRecc(apparentTemperature).map(clothing => (
-        <p>{clothing}</p>
+        <p key={clothing}>{clothing}</p>
       ))}
     </div>
   );
