@@ -2,12 +2,20 @@ require("dotenv").config();
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+import helmet from "helmet";
 
 var app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.WEBSITE_URL,
+  optionsSuccessStatus: 200
+};
+
+app.use(helmet());
+app.use(cors(corsOptions));
 
 app.get("/api", function(req, res) {
+  console.log(corsOptions);
   res.json("hello");
 });
 
