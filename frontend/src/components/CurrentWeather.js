@@ -13,6 +13,7 @@ import WeatherDetails from "./Weather/WeatherDetails";
 import DailyChart from "./graph/DailyChart";
 import { convertToF, formatAddress } from "../helpers";
 import { useStateValue } from "../contexts/StateProvider";
+import ClothingDetails from "./Clothing/ClothingDetails";
 
 const styles = theme => ({
   root: {
@@ -95,6 +96,9 @@ const CurrentWeather = props => {
               {renderBtn()}
             </Button>
             <DailyChart units={settings.units} hourly={data.hourly.data} />
+            <ClothingDetails
+              apparentTemperature={data.currently.apparentTemperature}
+            />
           </Grid>
           <Grid align="center" item sm={12} xs={12}>
             <CollapseWeather>
