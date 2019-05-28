@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Typography from "@material-ui/core/Typography";
 
 import Settings from "./Settings";
 import { withStyles } from "@material-ui/core/styles";
@@ -17,20 +18,19 @@ const styles = theme => ({
 const SettingsDrawer = ({ settings, classes }) => {
   return (
     <div>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <Typography align="center" variant="h5">
+          Settings
+        </Typography>
+      </div>
       <Divider />
-      {/* <List>
-        {["Search", "Settings"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
+      <List>
+        <ListItem>
+          <ListItemText>Units</ListItemText>
+          <Settings />
+        </ListItem>
+      </List>
       <Divider />
-      <Settings settings={settings} />
     </div>
   );
 };

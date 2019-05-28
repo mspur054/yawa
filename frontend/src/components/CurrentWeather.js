@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 
 import WeatherContent from "./WeatherContent";
 import CollapseWeather from "./CollapseWeather";
@@ -82,18 +81,6 @@ const CurrentWeather = props => {
             <WeatherDetails data={data} units={settings.units} />
           </Grid>
           <Grid item sm={12} xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.margin}
-              onClick={() =>
-                settings.units === "METRIC"
-                  ? dispatch({ type: "SET_UNITS_IMPERIAL" })
-                  : dispatch({ type: "SET_UNITS_METRIC" })
-              }
-            >
-              {renderBtn()}
-            </Button>
             <DailyChart units={settings.units} hourly={data.hourly.data} />
             <ClothingDetails
               apparentTemperature={data.currently.apparentTemperature}

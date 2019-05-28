@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { useStateValue } from "../contexts/StateProvider";
 
-const Settings = ({ settings }) => {
+const Settings = props => {
+  const [{ settings }, dispatch] = useStateValue();
   const { units } = settings;
   const [isOpen, setOpen] = useState(false);
 
   const handleUnitsChange = () => {
-    console.log("clicked");
+    settings.units === "METRIC"
+      ? dispatch({ type: "SET_UNITS_IMPERIAL" })
+      : dispatch({ type: "SET_UNITS_METRIC" });
     setOpen(!isOpen);
   };
 
