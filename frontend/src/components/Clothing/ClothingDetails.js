@@ -5,15 +5,15 @@ const ClothingDetails = ({ apparentTemperature }) => {
   const clothingRecc = apparentTemperature => {
     if (apparentTemperature >= 15) {
       return ["Singlet", "Shorts"];
-    } else if (5 < apparentTemperature < 15) {
+    } else if (6 <= apparentTemperature <= 14) {
       return ["Short sleeve", "Shorts"];
-    } else if (0 < apparentTemperature <= 5) {
+    } else if (1 <= apparentTemperature <= 5) {
       return ["Long sleeve", "Shorts"];
-    } else if (-5 < apparentTemperature <= 0) {
+    } else if (-4 <= apparentTemperature <= 0) {
       return ["Long sleeve", "Tights"];
-    } else if (-10 < apparentTemperature <= -5) {
+    } else if (-9 <= apparentTemperature <= -5) {
       return ["Jacket", "Long sleeve", "Tights", "Gloves", "Toque"];
-    } else if (-20 < apparentTemperature <= -10) {
+    } else if (-19 <= apparentTemperature <= -10) {
       return ["Jacket", "Base Layer Top", "Tights", "Mittens", "Toque", "Buff"];
     } else if (apparentTemperature <= -20) {
       return [

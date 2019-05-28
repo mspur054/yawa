@@ -69,7 +69,7 @@ const DailyChart = ({ hourly, units }) => {
 };
 
 DailyChart.propTypes = {
-  hourly: PropTypes.object
+  hourly: PropTypes.array
 };
 
 export default DailyChart;
