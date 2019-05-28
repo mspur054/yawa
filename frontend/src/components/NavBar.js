@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, withRouter } from "react-router-dom";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -33,10 +33,14 @@ class NavBar extends React.Component {
     this.setState({ value });
   };
 
+  componentDidMount() {
+    this.setState({ value: this.props.location.pathname });
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
+    console.log(this.props);
     return (
       <div className={classes.root}>
         <Tabs centered value={value} onChange={this.handleChange}>
@@ -49,9 +53,9 @@ class NavBar extends React.Component {
           />
           <Tab
             component={RouterLink}
-            value="/week"
-            to="/week"
-            label="This Week"
+            value="/10days"
+            to="/10days"
+            label="10 Days"
           />
         </Tabs>
       </div>
@@ -63,4 +67,4 @@ NavBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(NavBar);
+export default withRouter(withStyles(styles)(NavBar));

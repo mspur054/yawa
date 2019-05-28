@@ -52,7 +52,7 @@ export const useLocation = initialPosition => {
   const [position, setPosition] = useState(initialPosition);
   const [{ location }, dispatch] = useStateValue(); // useState({ currently: {}, hourly: {} });
   //TODO:Figure out why so many calls
-  console.log(position);
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_LOCATION_INIT" });

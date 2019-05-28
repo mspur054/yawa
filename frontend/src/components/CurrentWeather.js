@@ -50,7 +50,6 @@ const CurrentWeather = props => {
     }
   }
 
-  console.log(process.env.REACT_APP_FRONT_PORT);
   function renderTemp() {
     return `Feels like ${Math.floor(
       settings.units === "METRIC"

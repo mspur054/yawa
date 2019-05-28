@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import Tomorrow from "../components/Tomorrow";
+import Daily from "../components/Daily";
 import AppFrame from "./AppFrame";
 import CurrentWeather from "../components/CurrentWeather";
 import { useDataApi } from "../components/Utils/useDataApi";
@@ -18,7 +19,7 @@ const App = props => {
       locationData.doFetch(position);
     }
   }, [position.loading]);
-
+  //TODO: ADD NO MATCH ROUTE
   return (
     <Router>
       <React.Fragment>
@@ -26,7 +27,7 @@ const App = props => {
           <Switch>
             <Route exact path="/" component={CurrentWeather} />
             <Route exact path="/tomorrow" component={Tomorrow} />
-            <Route exact path="/thisweek" />
+            <Route exact path="/10days" component={Daily} />
           </Switch>
         </AppFrame>
       </React.Fragment>
