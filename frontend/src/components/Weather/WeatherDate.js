@@ -2,11 +2,14 @@ import React from "react";
 import { fromUnixTime, format } from "date-fns";
 import Typography from "@material-ui/core/Typography";
 
-const WeatherDate = props => {
-  const { time, dateFormat } = props;
+const WeatherDate = ({ time, dateFormat, ...other }) => {
   const dt = !time ? null : format(fromUnixTime(time), dateFormat);
 
-  return <Typography component="span">{dt}</Typography>;
+  return (
+    <Typography {...other} component="span">
+      {dt}
+    </Typography>
+  );
 };
 
 export default WeatherDate;

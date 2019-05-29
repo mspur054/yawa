@@ -53,9 +53,9 @@ class NavBar extends React.Component {
           />
           <Tab
             component={RouterLink}
-            value="/10days"
-            to="/10days"
-            label="10 Days"
+            value="/7days"
+            to="/7days"
+            label="7 Days"
           />
         </Tabs>
       </div>

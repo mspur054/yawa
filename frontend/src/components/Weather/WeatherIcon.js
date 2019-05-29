@@ -1,12 +1,9 @@
 import React from "react";
 
-const WeatherIcon = props => {
+const WeatherIcon = ({ icon }) => {
   return (
     <>
-      <img
-        alt={props.icon}
-        src={`/icons/${!props.icon ? "cloudy" : props.icon}.svg`}
-      />
+      <img alt={icon} src={`/icons/${!icon ? "cloudy" : icon}.svg`} />
     </>
   );
 };

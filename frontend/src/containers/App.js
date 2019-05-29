@@ -27,7 +27,7 @@ const App = props => {
           <Switch>
             <Route exact path="/" component={CurrentWeather} />
             <Route exact path="/tomorrow" component={Tomorrow} />
-            <Route exact path="/10days" component={Daily} />
+            <Route exact path="/7days" component={Daily} />
           </Switch>
         </AppFrame>
       </React.Fragment>
