@@ -7,12 +7,19 @@ import { convertToF, formatAddress } from "../helpers";
 import DailyList from "./DailyList";
 import WeatherContent from "./WeatherContent";
 import { useStateValue } from "../contexts/StateProvider";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  }
+});
 
 const Daily = props => {
   const [{ data, settings, location }, dispatch] = useStateValue();
-
+  const { classes } = props;
   return (
-    <WeatherContent>
+    <WeatherContent className={classes.root}>
       {data.isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -31,4 +38,4 @@ const Daily = props => {
   );
 };
 
-export default Daily;
+export default withStyles(styles)(Daily);

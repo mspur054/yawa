@@ -12,14 +12,8 @@ const DailyList = ({ daily, settings }) => {
 
   const renderDaily = data => {
     return data.map(day => (
-      <>
-        <Grid
-          alignItems={"center"}
-          container
-          key={day.time}
-          container
-          spacing={8}
-        >
+      <React.Fragment key={day.time}>
+        <Grid alignItems={"center"} container container spacing={8}>
           <Grid item xs={8}>
             <WeatherDate
               color={"textPrimary"}
@@ -34,7 +28,7 @@ const DailyList = ({ daily, settings }) => {
           <Grid item xs={2}>
             <WeatherIcon icon={day.icon} />
           </Grid>
-          <Grid direction={"column"} item xs={2}>
+          <Grid container direction={"column"} item xs={2}>
             <Typography align={"right"} color={"textPrimary"}>
               <b>{`${Math.floor(
                 units === "METRIC"
@@ -52,19 +46,19 @@ const DailyList = ({ daily, settings }) => {
           </Grid>
         </Grid>
         <Divider />
-      </>
+      </React.Fragment>
     ));
   };
 
   return (
     <div>
-      <Divider /> {renderDaily(daily.data)}{" "}
+      <Divider /> {renderDaily(daily.data)}
     </div>
   );
 };
 
 DailyList.propTypes = {
-  daily: PropTypes.array
+  daily: PropTypes.object
 };
 
 export default DailyList;
