@@ -5,13 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import { convertToF, formatAddress } from "../helpers";
 
 import DailyList from "./DailyList";
-import WeatherContent from "./WeatherContent";
 import { useStateValue } from "../contexts/StateProvider";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: "120px",
+    width: "100%"
   }
 });
 
@@ -19,7 +20,7 @@ const Daily = props => {
   const [{ data, settings, location }, dispatch] = useStateValue();
   const { classes } = props;
   return (
-    <WeatherContent className={classes.root}>
+    <div className={classes.root}>
       {data.isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -34,7 +35,7 @@ const Daily = props => {
           </Grid>
         </Grid>
       )}
-    </WeatherContent>
+    </div>
   );
 };
 
