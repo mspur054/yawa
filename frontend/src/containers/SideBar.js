@@ -20,6 +20,7 @@ import { withStyles } from "@material-ui/core/styles";
 import NavBar from "../components/NavBar";
 import SettingsDrawer from "./SettingsDrawer";
 import { useStateValue } from "../contexts/StateProvider";
+import { formatAddress } from "../helpers";
 
 const drawerWidth = 240;
 
@@ -58,7 +59,7 @@ const styles = theme => ({
 const SideBar = props => {
   const { classes, theme } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [{ settings }, dispatch] = useStateValue();
+  const [{ settings, location }, dispatch] = useStateValue();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -97,7 +98,7 @@ const SideBar = props => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" noWrap>
-            Run Weather
+            {!location.isLoading ? formatAddress(location.address) : null}
           </Typography>
         </Toolbar>
         <NavBar />

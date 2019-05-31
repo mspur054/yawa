@@ -43,6 +43,7 @@ const DailyList = ({ daily, settings, classes }) => {
             >
               <Grid item xs={8}>
                 <WeatherDate
+                  fontWeight="fontWeightMedium"
                   color={"textPrimary"}
                   align={"left"}
                   time={day.time}
@@ -53,7 +54,7 @@ const DailyList = ({ daily, settings, classes }) => {
                 </Typography>
               </Grid>
               <Grid item xs={2}>
-                <WeatherIcon icon={day.icon} />
+                <WeatherIcon style={{ height: "75px" }} icon={day.icon} />
               </Grid>
               <Grid
                 container
@@ -80,7 +81,7 @@ const DailyList = ({ daily, settings, classes }) => {
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Grid container spacing={2}>
+            <Grid container spacing={8}>
               <Grid item xs={6}>
                 <Typography>Dew Point</Typography>
                 <Typography>Humidity</Typography>

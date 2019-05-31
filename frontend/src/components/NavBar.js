@@ -40,7 +40,6 @@ class NavBar extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-    console.log(this.props);
     return (
       <div className={classes.root}>
         <Tabs centered value={value} onChange={this.handleChange}>
