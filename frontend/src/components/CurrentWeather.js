@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 
 import WeatherContent from "./WeatherContent";
 import CollapseWeather from "./CollapseWeather";
@@ -34,6 +35,11 @@ const styles = theme => ({
   expandOpen: {
     transform: "rotate(180deg)"
   }
+  // tempMax: {
+  //   marginTop: 10,
+  //   marginRight: 0,
+  //   padding: 0
+  // }
 });
 
 const CurrentWeather = props => {
@@ -73,29 +79,23 @@ const CurrentWeather = props => {
               dateFormat={"eee MMM d, pa"}
             /> */}
           </Grid>
-          <Grid item xs={6} sm container>
+          <Grid item xs={6} sm container justify="center">
             <Grid item xs={12}>
-              <Typography variant="h3">{`${Math.floor(
+              <Typography variant="h2">{`${Math.floor(
                 units === "METRIC"
                   ? currently.temperature
                   : convertToF(currently.temperature)
               )}°${units === "METRIC" ? "C" : "F"}`}</Typography>
             </Grid>
-            <Grid item xs={3}>
-              <ArrowDropDown />
-            </Grid>
-            <Grid item xs={3}>
-              <Typography>{`${Math.floor(
+            <Grid item xs={6}>
+              <Typography variant="h5">{`▼${Math.floor(
                 units === "METRIC"
                   ? data.daily.data[0].temperatureMin
                   : convertToF(data.daily.data[0].temperatureMin)
               )}°${units === "METRIC" ? "C" : "F"}`}</Typography>
             </Grid>
-            <Grid item xs={3}>
-              'Arrow up goes here'
-            </Grid>
-            <Grid item xs={3}>
-              <Typography>{`${Math.floor(
+            <Grid item xs={6}>
+              <Typography variant="h5">{`▲${Math.floor(
                 units === "METRIC"
                   ? data.daily.data[0].temperatureMax
                   : convertToF(data.daily.data[0].temperatureMax)
@@ -106,10 +106,13 @@ const CurrentWeather = props => {
             <WeatherDetails data={data} units={units} />
           </Grid>
           <Grid item sm={12} xs={12}>
-            <DailyChart units={units} hourly={data.hourly.data} />
+           
             <ClothingDetails
+              height="75px"
+              fill="#4286f4"
               apparentTemperature={currently.apparentTemperature}
             />
+             <DailyChart units={units} hourly={data.hourly.data} />
           </Grid>
           <Grid align="center" item sm={12} xs={12}>
             <CollapseWeather>
