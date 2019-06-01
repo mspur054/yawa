@@ -31,7 +31,11 @@ app.get("/api/darksky", async function(req, res) {
 
     const results = await axios.get(url);
 
-    res.json(results.data);
+    const weatherData = JSON.parse(JSON.stringify(results.data));
+
+    weatherData.hourly.data = weatherData.hourly.data.slice(0, 24);
+
+    res.json(weatherData);
   } catch (error) {
     console.error(error);
   }

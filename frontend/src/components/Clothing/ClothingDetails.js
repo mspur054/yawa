@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from "@material-ui/core/Tooltip";
 
 const ClothingDetails = ({ apparentTemperature, ...other }) => {
   const clothingRecc = apparentTemperature => {
@@ -8,13 +8,13 @@ const ClothingDetails = ({ apparentTemperature, ...other }) => {
     if (apparentTemperature >= 15) {
       return ["Singlet", "Shorts"];
     } else if (6 <= apparentTemperature <= 14) {
-      return ["Short Sleeve", "Shorts", "Long Sleeve", "Toque", "Tights"];
+      return ["Short Sleeve", "Shorts"];
     } else if (1 <= apparentTemperature <= 5) {
       return ["Long Sleeve", "Shorts"];
     } else if (-4 <= apparentTemperature <= 0) {
       return ["Long Sleeve", "Tights"];
     } else if (-9 <= apparentTemperature <= -5) {
-      return [ "Toque", "Jacket", "Long Sleeve", "Tights", "Gloves"];
+      return ["Toque", "Jacket", "Long Sleeve", "Tights", "Gloves"];
     } else if (-19 <= apparentTemperature <= -10) {
       return ["Toque", "Buff", "Jacket", "Base Layer Top", "Tights", "Mittens"];
     } else if (apparentTemperature <= -20) {
@@ -30,25 +30,30 @@ const ClothingDetails = ({ apparentTemperature, ...other }) => {
     }
   };
 
-  const renderClothingIcon = clothingItem =>{
-   return  <object
-    {...other}
-    alt="clothingItem"
-    data={`/icons/Clothing/${clothingItem.replace(/\s/gi,"_")}.svg`}
-    type="image/svg+xml"
-  >
-    <img {...other}   alt={clothingItem} src={`/icons/Clothing/${clothingItem.replace(/\s/gi,"_")}.jpg`} />
-    </object>
-
-  }
+  const renderClothingIcon = clothingItem => {
+    return (
+      <object
+        {...other}
+        alt="clothingItem"
+        data={`/icons/Clothing/${clothingItem.replace(/\s/gi, "_")}.svg`}
+        type="image/svg+xml"
+      >
+        <img
+          {...other}
+          alt={clothingItem}
+          src={`/icons/Clothing/${clothingItem.replace(/\s/gi, "_")}.jpg`}
+        />
+      </object>
+    );
+  };
 
   return (
     <div>
-      <Typography variant="h5" gutterBottom>Recommended Clothing</Typography>
+      <Typography variant="h5" gutterBottom>
+        Recommended Clothing
+      </Typography>
       {clothingRecc(apparentTemperature).map(clothing => (
-        <>
-          <Tooltip key={clothing} title={clothing}>
-
+        <Tooltip key={clothing} title={clothing}>
           {renderClothingIcon(clothing)}
           {/* <object
             {...other}
@@ -56,8 +61,7 @@ const ClothingDetails = ({ apparentTemperature, ...other }) => {
             data={`/icons/Clothing/Singlet.svg`}
             type="image/svg+xml"
           /> */}
-          </Tooltip>
-        </>
+        </Tooltip>
       ))}
     </div>
   );

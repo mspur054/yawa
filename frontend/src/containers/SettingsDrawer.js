@@ -6,7 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 
 import Settings from "./Settings";
@@ -25,6 +25,12 @@ const SettingsDrawer = ({ settings, classes }) => {
       </div>
       <Divider />
       <List>
+        <ListItem>
+          <ListItemIcon>
+            <SearchIcon />
+          </ListItemIcon>
+          <ListItemText>Search</ListItemText>
+        </ListItem>
         <ListItem>
           <ListItemText>Units</ListItemText>
           <Settings />
