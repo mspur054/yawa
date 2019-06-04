@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -65,25 +58,6 @@ const SideBar = props => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {["Search", "Settings"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      {/* <Settings settings={settings} /> */}
-    </div>
-  );
-
   return (
     <>
       <CssBaseline />
@@ -104,7 +78,6 @@ const SideBar = props => {
         <NavBar />
       </AppBar>
       <nav className={classes.drawer}>
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={props.container}
@@ -116,7 +89,6 @@ const SideBar = props => {
               paper: classes.drawerPaper
             }}
           >
-            {/* {drawer} */}
             <SettingsDrawer settings={settings} />
           </Drawer>
         </Hidden>
@@ -128,7 +100,6 @@ const SideBar = props => {
             variant="permanent"
             open
           >
-            {/* {drawer} */}
             <SettingsDrawer settings={settings} />
           </Drawer>
         </Hidden>

@@ -2,8 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 
 import WeatherContent from "./WeatherContent";
 import CollapseWeather from "./CollapseWeather";
@@ -73,11 +71,8 @@ const CurrentWeather = props => {
         <Grid container spacing={16}>
           <Grid align="center" item xs={12} sm={12}>
             <Typography variant="h4">{currently.summary}</Typography>
+            <WeatherDate time={data.currently.time} dateFormat={"pa"} />
             <WeatherIcon style={{ height: "200px" }} icon={currently.icon} />
-            {/* <WeatherDate
-              time={data.currently.time}
-              dateFormat={"eee MMM d, pa"}
-            /> */}
           </Grid>
           <Grid item xs={6} sm container justify="center">
             <Grid item xs={12}>
@@ -106,13 +101,12 @@ const CurrentWeather = props => {
             <WeatherDetails data={data} units={units} />
           </Grid>
           <Grid item sm={12} xs={12}>
-           
             <ClothingDetails
               height="75px"
               fill="#4286f4"
               apparentTemperature={currently.apparentTemperature}
             />
-             <DailyChart units={units} hourly={data.hourly.data} />
+            <DailyChart units={units} hourly={data.hourly.data} />
           </Grid>
           <Grid align="center" item sm={12} xs={12}>
             <CollapseWeather>

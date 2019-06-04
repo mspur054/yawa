@@ -4,10 +4,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
+import SearchBar from "../components/SearchBar";
 
 import Settings from "./Settings";
 import { withStyles } from "@material-ui/core/styles";
@@ -28,6 +27,7 @@ const SettingsDrawer = ({ settings, classes }) => {
         <ListItem>
           <ListItemIcon>
             <SearchIcon />
+            <SearchBar />
           </ListItemIcon>
           <ListItemText>Search</ListItemText>
         </ListItem>

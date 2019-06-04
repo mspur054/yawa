@@ -38,7 +38,6 @@ const DailyList = ({ daily, settings, classes }) => {
               justify={"flex-start"}
               alignItems={"center"}
               container
-              container
               spacing={8}
             >
               <Grid item xs={8}>
