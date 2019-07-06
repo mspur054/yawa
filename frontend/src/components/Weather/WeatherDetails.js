@@ -8,7 +8,8 @@ const WeatherDetails = ({ data, units }) => {
     precipProbability,
     humidity,
     windSpeed,
-    apparentTemperature
+    apparentTemperature,
+    dewPoint
   } = data.currently;
 
   function renderWind() {
@@ -26,6 +27,9 @@ const WeatherDetails = ({ data, units }) => {
         units === "METRIC"
           ? apparentTemperature
           : convertToF(apparentTemperature)
+      )}°${units === "METRIC" ? "C" : "F"}`}</Typography>
+      <Typography>{`Dew Point: ${Math.floor(
+        units === "METRIC" ? dewPoint : convertToF(dewPoint)
       )}°${units === "METRIC" ? "C" : "F"}`}</Typography>
       <Typography>{`Precipitation: ${precipProbability}%`}</Typography>
       <Typography>{`Humidity: ${Math.round(humidity * 100)}%`}</Typography>

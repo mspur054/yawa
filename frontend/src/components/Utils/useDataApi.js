@@ -14,12 +14,6 @@ export const useDataApi = initialPosition => {
       //only try fetch if position is not loading
       dispatch({ type: "FETCH_INIT" });
       try {
-        // const result = await darkSky.get(
-        //   `/${position.latitude},${
-        //     position.longitude
-        //   }?exclude=minutely,flags,daily&units=si`
-        // );
-
         const result = await darkSky.get(
           `?latitude=${position.latitude}&longitude=${position.longitude}`
         );
