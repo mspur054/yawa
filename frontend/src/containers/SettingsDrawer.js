@@ -18,7 +18,6 @@ const styles = theme => ({
 const SettingsDrawer = ({ settings, classes }) => {
   const [query, setQuery] = useState("");
   function handleChange(value) {
-    console.log(process.env.REACT_GOOGLE_PLACES_API);
     setQuery(value.currentTarget.value);
   }
   return (

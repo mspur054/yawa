@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -11,7 +11,6 @@ const SearchBar = ({ query, handleChange }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>Enter City:</label>
         <InputBase
           name="city"
           value={query}
