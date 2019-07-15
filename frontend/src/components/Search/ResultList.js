@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Typography from "@material-ui/core/Typography";
+
 import useGoogleAutoComplete from "../../components/Utils/useGoogleAutoComplete";
 
 const ResultList = ({ query }) => {
@@ -25,13 +27,12 @@ const ResultList = ({ query }) => {
 
   return (
     <>
-      <div>this is the list</div>
       <ul>
         {results.predictions.map(prediction => (
           <li key={prediction.place_id}>
-            <span onClick={() => setOption(prediction.place_id)}>
+            <Typography onClick={() => setOption(prediction.place_id)}>
               {prediction.description}
-            </span>
+            </Typography>
           </li>
         ))}
       </ul>
