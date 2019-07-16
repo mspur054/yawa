@@ -41,5 +41,25 @@ app.get("/api/darksky", async function(req, res) {
   }
 });
 
+app.get("/api/places", async function(req, res) {
+  try {
+    const latlng = `${req.query.latitude},${req.query.longitude}`;
+
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&result_type=administrative_area_level_3|locality&key=${
+      process.env.PLACES_API
+    }`;
+
+    const results = await axios.get(url);
+
+    const placeData = JSON.parse(JSON.stringify(results.data));
+
+    const formattedResults = placeData.results[0];
+
+    res.json(formattedResults);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.listen(process.env.PORT || 7000);
 console.log("server is running");
